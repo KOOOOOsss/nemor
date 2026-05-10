@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEMOR | Luxury Travel Jewelry & Watch Case</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FCF9F5;
+            color: #2C2418;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .navbar {
+            padding: 24px 0 20px;
+            border-bottom: 1px solid rgba(198, 169, 128, 0.3);
+            backdrop-filter: blur(2px);
+            background: rgba(252, 249, 245, 0.85);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #9B7B4C;
+            text-transform: uppercase;
+        }
+        .logo p {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #7A684D;
+            margin-top: 4px;
+            font-weight: 300;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links li {
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 8px 0;
+            color: #3e3322;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links li i {
+            margin-right: 8px;
+            color: #B4925A;
+        }
+        .nav-links li:hover {
+            color: #B4925A;
+            border-bottom-color: #DCC29E;
+        }
+        .nav-links li.active {
+            color: #B4925A;
+            border-bottom-color: #B4925A;
+            font-weight: 600;
+        }
+        .page-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            padding: 48px 0 80px;
+        }
+        .page-section.active-section {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            color: #4A3724;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        .section-sub {
+            color: #8E7A60;
+            margin-bottom: 48px;
+            font-size: 1rem;
+            border-left: 3px solid #D8C5AB;
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+        .gold-line {
+            width: 70px;
+            height: 2px;
+            background: #DCC29E;
+            margin: 20px 0 30px 0;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .product-card {
+            background: #FFFFFF;
+            border-radius: 32px;
+            padding: 32px 24px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
+            border: 1px solid #F1E9DD;
+            text-align: center;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(80,60,35,0.15);
+        }
+        .card-icon {
+            font-size: 3rem;
+            color: #C6A16E;
+            background: #FEF7EF;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        .product-card h3 {
+            font-size: 1.8rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #3F2E1E;
+            letter-spacing: 1px;
+        }
+        .product-card p {
+            color: #6C5A44;
+            font-size: 0.9rem;
+            margin: 12px 0 0;
+            line-height: 1.4;
+        }
+        .company-story {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            margin: 32px 0 56px;
+            align-items: center;
+        }
+        .story-text {
+            flex: 1.5;
+        }
+        .story-text h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 20px;
+            color: #4F3A24;
+        }
+        .story-text p {
+            margin-bottom: 20px;
+            color: #4E4130;
+            line-height: 1.6;
+        }
+        .values-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .value-item {
+            background: #FFFBF5;
+            border-radius: 24px;
+            padding: 22px 18px;
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+            border: 1px solid #F0E5D8;
+        }
+        .value-item i {
+            font-size: 2rem;
+            color: #C6A16E;
+            margin-bottom: 12px;
+        }
+        .value-item h4 {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 42px;
+            margin-top: 30px;
+        }
+        .member-card {
+            background: white;
+            border-radius: 48px 32px 48px 32px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.25s;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.03);
+            border: 1px solid #F0E5D8;
+        }
+        .member-avatar {
+            background: #F6EFE3;
+            width: 110px;
+            height: 110px;
+            border-radius: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3.5rem;
+            color: #C6A16E;
+            border: 3px solid #F1E2CF;
+        }
+        .member-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #4F3A24;
+            letter-spacing: 0.5px;
+        }
+        .member-title, .member-bio {
+            display: none;
+        }
+        .social-icons {
+            margin-top: 18px;
+        }
+        .social-icons i {
+            margin: 0 8px;
+            color: #AE8F62;
+            font-size: 1.1rem;
+            cursor: default;
+        }
+        .footer {
+            background: #2C2418;
+            color: #DDD2C2;
+            padding: 40px 0 24px;
+            margin-top: 40px;
+            font-size: 0.8rem;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+        }
+        .footer-links i {
+            margin: 0 12px;
+            font-size: 1.2rem;
+            color: #CABDA8;
+            cursor: default;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        .deco-quote {
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #AA8B5E;
+            margin: 48px 0 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <h1>NEMOR</h1>
+            <p>JEWELRY · WATCH · COSMETICS</p>
+        </div>
+        <ul class="nav-links">
+            <li class="active" data-page="products"><i class="fas fa-gem"></i> Products</li>
+            <li data-page="company"><i class="fas fa-building"></i> Brand</li>
+            <li data-page="team"><i class="fas fa-users"></i> Team</li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- PRODUCTS PAGE - All products named NEMOR -->
+        <section id="products-page" class="page-section active-section">
+            <div>
+                <span class="section-title">The NEMOR Collection</span>
+                <div class="gold-line"></div>
+                <div class="section-sub">Travel jewelry & watch storage case · refined for the journey</div>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="card-icon"><i class="fas fa-suitcase"></i></div>
+                    <h3>NEMOR</h3>
+                    <p>Travel jewelry & watch storage case</p>
+                </div>
+                <div class="product-card">
+                    <div class="card-icon"><i class="fas fa-crown"></i></div>
+                    <h3>NEMOR</h3>
+                    <p>Travel jewelry & watch storage case</p>
+                </div>
+                <div class="product-card">
+                    <div class="card-icon"><i class="fas fa-feather-alt"></i></div>
+                    <h3>NEMOR</h3>
+                    <p>Travel jewelry & watch storage case</p>
+                </div>
+            </div>
+            <div class="deco-quote">
+                “ Elegant protection for your precious companions on the road. ”
+            </div>
+        </section>
+
+        <!-- COMPANY PAGE (unchanged, purely brand story) -->
+        <section id="company-page" class="page-section">
+            <div>
+                <span class="section-title">About NEMOR</span>
+                <div class="gold-line"></div>
+                <div class="section-sub">Crafted for the discerning traveler</div>
+            </div>
+            <div class="company-story">
+                <div class="story-text">
+                    <h3>Heritage meets innovation</h3>
+                    <p>NEMOR was born from the desire to merge fine jewelry protection, watch safety and premium cosmetics storage. Our travel cases are designed together with Italian leather artisans and Swiss watch-case engineers to bring you the ultimate portable luxury.</p>
+                    <p>Every detail — from soft anti-shock padding to custom gold-finish locks — ensures your most treasured items stay safe and beautifully organized across continents.</p>
+                    <p>Sustainable luxury is at our core. We use ethically sourced leathers and recycled microfibre linings, and every box is hand-finished in limited numbers.</p>
+                </div>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h4>Artisan Craft</h4>
+                    <p>Hand-stitched & polished</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Sustainable</h4>
+                    <p>Eco-conscious materials</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Lifetime care</h4>
+                    <p>Free maintenance service</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM PAGE - No names or details (empty placeholders) -->
+        <section id="team-page" class="page-section">
+            <div>
+                <span class="section-title">Our Team</span>
+                <div class="gold-line"></div>
+                <div class="section-sub">Passionate people behind the brand</div>
+            </div>
+            <div class="team-grid">
+                <div class="member-card">
+                    <div class="member-avatar"><i class="fas fa-user-tie"></i></div>
+                    <h3>— —</h3>
+                    <div class="social-icons"><i class="fab fa-linkedin-in"></i><i class="fab fa-instagram"></i></div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar"><i class="fas fa-gem"></i></div>
+                    <h3>— —</h3>
+                    <div class="social-icons"><i class="fab fa-linkedin-in"></i><i class="fab fa-twitter"></i></div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar"><i class="fas fa-palette"></i></div>
+                    <h3>— —</h3>
+                    <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-behance"></i></div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar"><i class="fas fa-chart-line"></i></div>
+                    <h3>— —</h3>
+                    <div class="social-icons"><i class="fab fa-twitter"></i><i class="fab fa-weixin"></i></div>
+                </div>
+            </div>
+            <div class="deco-quote" style="margin-top: 40px; font-size: 0.85rem;">
+                * Team member information has been removed as requested.
+            </div>
+        </section>
+    </div>
+</footer>
+
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="copyright">
+            <i class="far fa-registered"></i> 2025 NEMOR · Timeless travel elegance
+        </div>
+        <div class="footer-links">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-weixin"></i>
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div style="font-size:0.7rem;">Jewelry · Watch · Cosmetics travel case</div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const sections = {
+            products: document.getElementById('products-page'),
+            company: document.getElementById('company-page'),
+            team: document.getElementById('team-page')
+        };
+        const navItems = document.querySelectorAll('.nav-links li');
+
+        function switchPage(pageId) {
+            Object.values(sections).forEach(section => {
+                if (section) section.classList.remove('active-section');
+            });
+            if (sections[pageId]) sections[pageId].classList.add('active-section');
+            navItems.forEach(item => {
+                const pageAttr = item.getAttribute('data-page');
+                if (pageAttr === pageId) item.classList.add('active');
+                else item.classList.remove('active');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const page = this.getAttribute('data-page');
+                if (page && sections[page]) switchPage(page);
+            });
+        });
+
+        // Ensure products page is active initially
+        const activeNav = document.querySelector('.nav-links li.active');
+        if (activeNav) {
+            const defaultPage = activeNav.getAttribute('data-page');
+            if (defaultPage && sections[defaultPage]) {
+                Object.values(sections).forEach(sec => sec.classList.remove('active-section'));
+                sections[defaultPage].classList.add('active-section');
+            } else switchPage('products');
+        } else switchPage('products');
+    })();
+</script>
+</body>
+</html>
